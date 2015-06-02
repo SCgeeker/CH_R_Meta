@@ -1,6 +1,17 @@
 ## 在Rstudio，Tools -> Global Options -> General -> Default Text Encoding -> UTF-8
+## Opening with encoding -> BIG5
 ## 系統語系要設定為台灣正體中文
 Sys.setlocale(category = "LC_ALL", locale = "cht")
+
+## Function for check package installed from stackoverflow.com
+pkgTest <- function(x)
+{
+    if (!require(x,character.only = TRUE))
+    {
+        install.packages(x,dep=TRUE)
+        if(!require(x,character.only = TRUE)) stop("Package not found")
+    }
+}
 
 ##讀取檔案、提取資料與製造變項
 
@@ -12,6 +23,8 @@ Sys.setlocale(category = "LC_ALL", locale = "cht")
 
 ## 預設資料編碼為CP950(BIG5)
 dta <- read.table(file = 'data/Quality_of_Life.txt', header = TRUE, encoding = "CP950")
+
+
 
 #dta 的類型是資料框架（data frame）
 
@@ -28,6 +41,8 @@ dim(dta)
 #利用names看看變項名稱
 
 names(dta)
+
+
 
 #看前六筆
 
@@ -183,8 +198,8 @@ with(dta, sd(功能))
 
 #注意，安裝只需要一次，但載入則是每次
 
-install.packages('moments', dependencies = TRUE)
-
+#install.packages('moments', dependencies = TRUE)
+pkgTest("moments")
 require(moments)
 
 skewness(dta$功能)
@@ -205,7 +220,7 @@ sapply(dta[, -c(1:3)], mean)
 
 my_summary <- function(x) {
 
- require(moments)
+ pkgTest("moments"); require(moments)
 
  funs <- c(mean, sd, skewness, kurtosis)
 
@@ -302,7 +317,7 @@ grid()
 #載入 lattice，準備畫圖
 
 #取出四個要畫圖的變項
-
+pkgTest("lattice")
 require(lattice)
 
 v4 <- dta[, 4:7]
@@ -320,7 +335,7 @@ p <- lapply(names(v4), function(x) histogram( ~ v4[x] | 年齡 + 性別, data = dta,
 #利用 gridExtra 排一下四張圖
 
 #圖1.3
-
+pkgTest("gridExtra")
 library(gridExtra)
 
 grid.arrange(p[[1]], p[[2]], p[[3]], p[[4]], nrow = 2, ncol = 2)
@@ -334,9 +349,9 @@ grid.arrange(p[[1]], p[[2]], p[[3]], p[[4]], nrow = 2, ncol = 2)
 #載進 ggplot2，準備畫圖
 
 #Hmisc提供 ggplot2 額外功能
-
+pkgTest("ggplot2")
 require(ggplot2)
-
+pkgTest("Hmisc")
 require(Hmisc)
 
 
@@ -380,7 +395,7 @@ ggplot(data = dta, aes(x = 年齡, y = 功能, color = 性別) ) +
  
 
 #載入reshape2、把資料由寬形變長形
-
+pkgTest("reshape2")
 require(reshape2)
 
 dtal <- melt(dta[, -8], variable.name = '功能項目', value.name = '分數')

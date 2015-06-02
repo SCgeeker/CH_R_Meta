@@ -1,8 +1,8 @@
-library("XML")
-library("httr")
+#library("XML")
+#library("httr")
 library("stringr")
 #library("igraph")
-library("dplyr")
+#library("dplyr")
 
 # Get the urls
 x = url("http://myweb.ncku.edu.tw/~cpcheng/Rbook/index.htm")
@@ -11,6 +11,7 @@ close(x)
 
 URL1 <- htmlCode[grep("href=",htmlCode)][c(11:19,21:40)]
 
+# Clean tags
 p <- c(";mso-ascii-font-family:","style='font-family:","style='font-size:16.0pt'>","<span lang=EN-US>", "<span lang=EN-US", "><span", "<a href=","lang=EN-US style='font-size:16.0pt'><a href=","lang=EN-US", "href=\"", " ", "\"", ">")
 
 for(i in 1:length(p)){
