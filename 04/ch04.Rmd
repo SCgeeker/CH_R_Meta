@@ -9,9 +9,10 @@ output: html_document
 **2.必須從image file讀取資料**  
 **[Rmarkdown原始碼](https://github.com/SCgeeker/CH_R_Meta/blob/gh-pages/04/ch04.Rmd)**  
 
-1. 讀取資料。
-```{r readdata, message=FALSE, warning=FALSE, results='hide', cache=TRUE}
+1. 讀取與檢視資料。
+```{r readdata, message=FALSE, warning=FALSE, results='markup', cache=TRUE}
 load("data/CH04.Rdata")
+head(dta)
 ```
 
 2. 製作表格內容。

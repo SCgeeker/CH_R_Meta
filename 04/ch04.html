@@ -70,9 +70,17 @@ img {
 <h3>Questions to be noted:</h3>
 <p><strong>1.無法直接讀取UTF-8原始資料</strong><br /><strong>2.必須從image file讀取資料</strong><br /><strong><a href="https://github.com/SCgeeker/CH_R_Meta/blob/gh-pages/04/ch04.Rmd">Rmarkdown原始碼</a></strong></p>
 <ol style="list-style-type: decimal">
-<li>讀取資料。</li>
+<li>讀取與檢視資料。</li>
 </ol>
-<pre class="r"><code>load(&quot;data/CH04.Rdata&quot;)</code></pre>
+<pre class="r"><code>load(&quot;data/CH04.Rdata&quot;)
+head(dta)</code></pre>
+<pre><code>##   性別 憂鬱 被霸凌  指數 年齡
+## 1   女   29      3 18.49   17
+## 2   女    4      0 20.17   15
+## 3   女    3      2 15.63   16
+## 4   女   20      1 21.48   18
+## 5   女   25      4 18.43   15
+## 6   女   24      3 16.29   13</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>製作表格內容。</li>
 </ol>
