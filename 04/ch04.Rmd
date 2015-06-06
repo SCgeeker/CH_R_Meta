@@ -1,42 +1,40 @@
 ---
-title: "CH04»sªí¸Õ§@"
+title: "CH04è£½è¡¨è©¦ä½œ"
 author: "Sau-Chin Chen"
 output: html_document
 ---
 
 #### Questions to be solved:
-**1.Rstudio 0.99µLªk¥¿½TÅª¨ú¤¤¤å¸ê®Æ**  
-**2.UTF-8¸ê®ÆÂà´«¦³°İÃD**
+**1.ç„¡æ³•ç›´æ¥è®€UTF-8åŸå§‹è³‡æ–™**  
+**2.å¿…é ˆå¾image fileè®€å–è³‡æ–™**  
 
-1. Åª¨ú¸ê®Æ¡C
+1. è®€å–è³‡æ–™ã€‚
 ```{r readdata, message=FALSE, warning=FALSE, results='hide', cache=TRUE}
-dta <- read.table("data/bully_big5.txt", header = TRUE, encoding = "CP950")
-dta_f <- subset(dta, dta[,'©Ê§O'] == '¤k')
-dta_m <- subset(dta, dta[,'©Ê§O'] != '¤k')
+load("data/CH04.Rdata")
 ```
 
-2. »s§@ªí®æ¤º®e¡C
+2. è£½ä½œè¡¨æ ¼å…§å®¹ã€‚
 ```{r making,  message=FALSE, warning=FALSE, results='hide', cache=TRUE}
 T41f <- rbind(
 c(" "," "," "," "),
-round(summary(lm(¼~Æ{~«ü¼Æ+¦~ÄÖ,data=dta_f))$coef[2,],digits=3),
-round(summary(lm(³QÅQ­â~«ü¼Æ+¦~ÄÖ,data=dta_f))$coef[2,],digits=3),
-round(summary(lm(¼~Æ{~³QÅQ­â+¦~ÄÖ,data=dta_f))$coef[2,],digits=3),
-round(summary(lm(¼~Æ{~«ü¼Æ+³QÅQ­â+¦~ÄÖ,data=dta_f))$coef[2,],digits=3)
+round(summary(lm(æ†‚é¬±~æŒ‡æ•¸+å¹´é½¡,data=dta_f))$coef[2,],digits=3),
+round(summary(lm(è¢«éœ¸å‡Œ~æŒ‡æ•¸+å¹´é½¡,data=dta_f))$coef[2,],digits=3),
+round(summary(lm(æ†‚é¬±~è¢«éœ¸å‡Œ+å¹´é½¡,data=dta_f))$coef[2,],digits=3),
+round(summary(lm(æ†‚é¬±~æŒ‡æ•¸+è¢«éœ¸å‡Œ+å¹´é½¡,data=dta_f))$coef[2,],digits=3)
 )
 T41m <- rbind(
 c(" "," "," "," "),
-round(summary(lm(¼~Æ{~«ü¼Æ+¦~ÄÖ,data=dta_m))$coef[2,],digits=3),
-round(summary(lm(³QÅQ­â~«ü¼Æ+¦~ÄÖ,data=dta_m))$coef[2,],digits=3),
-round(summary(lm(¼~Æ{~³QÅQ­â+¦~ÄÖ,data=dta_m))$coef[2,],digits=3),
-round(summary(lm(¼~Æ{~«ü¼Æ+³QÅQ­â+¦~ÄÖ,data=dta_m))$coef[2,],digits=3)
+round(summary(lm(æ†‚é¬±~æŒ‡æ•¸+å¹´é½¡,data=dta_m))$coef[2,],digits=3),
+round(summary(lm(è¢«éœ¸å‡Œ~æŒ‡æ•¸+å¹´é½¡,data=dta_m))$coef[2,],digits=3),
+round(summary(lm(æ†‚é¬±~è¢«éœ¸å‡Œ+å¹´é½¡,data=dta_m))$coef[2,],digits=3),
+round(summary(lm(æ†‚é¬±~æŒ‡æ•¸+è¢«éœ¸å‡Œ+å¹´é½¡,data=dta_m))$coef[2,],digits=3)
 )
 ```
 
-3. ¿é¥Xªí®æ¡C
+3. è¼¸å‡ºè¡¨æ ¼ã€‚æ¯”è¼ƒåŸæ›¸è¡¨4.1
 ```{r output, warning=FALSE, message=FALSE, results='asis', cache=TRUE}
-rownames(T41f) <- c("«C¤Ö¦~¤k©Ê","1.Åé½è«ü¼Æ->¼~Æ{", "2.Åé½è«ü¼Æ->³QÅQ­â", "3.³QÅQ­â¸gÅç->¼~Æ{", "4.Åé½è«ü¼Æ->¼~Æ{")
-rownames(T41m) <- c("«C¤Ö¦~¨k©Ê","1.Åé½è«ü¼Æ->¼~Æ{ ", "2.Åé½è«ü¼Æ->³QÅQ­â ", "3.³QÅQ­â¸gÅç->¼~Æ{ ", "4.Åé½è«ü¼Æ->¼~Æ{ ")
+rownames(T41f) <- c("é’å°‘å¹´å¥³æ€§","1.é«”è³ªæŒ‡æ•¸->æ†‚é¬±", "2.é«”è³ªæŒ‡æ•¸->è¢«éœ¸å‡Œ", "3.è¢«éœ¸å‡Œç¶“é©—->æ†‚é¬±", "4.é«”è³ªæŒ‡æ•¸->æ†‚é¬±")
+rownames(T41m) <- c("é’å°‘å¹´ç”·æ€§","1.é«”è³ªæŒ‡æ•¸->æ†‚é¬± ", "2.é«”è³ªæŒ‡æ•¸->è¢«éœ¸å‡Œ ", "3.è¢«éœ¸å‡Œç¶“é©—->æ†‚é¬± ", "4.é«”è³ªæŒ‡æ•¸->æ†‚é¬± ")
 knitr::kable(rbind(T41f,T41m), type = "html", floating = FALSE)
 ```
 

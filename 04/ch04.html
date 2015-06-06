@@ -66,18 +66,13 @@ img {
 </div>
 
 
-<div id="questions-to-be-solved" class="section level2">
-<h2>Questions to be solved:</h2>
-<p><strong>Rstudio 0.99無法正確讀取中文資料</strong> <strong>UTF-8資料轉換有問題</strong></p>
+<div id="questions-to-be-solved" class="section level4">
+<h4>Questions to be solved:</h4>
+<p><strong>1.無法直接讀UTF-8原始資料</strong><br /><strong>2.必須從image file讀取資料</strong></p>
 <ol style="list-style-type: decimal">
 <li>讀取資料。</li>
 </ol>
-<pre class="r"><code>#Sys.setlocale(category = &quot;LC_ALL&quot;, locale = &quot;cht&quot;)
-dta &lt;- read.table(&quot;data/bully_big5.txt&quot;, header = TRUE, encoding = &quot;CP950&quot;)
-#colnames(dta) &lt;- c('性別','憂鬱','被霸凌','指數','年齡')
-#iconv(dta, &quot;CP950&quot;, &quot;UTF-8&quot;)
-dta_f &lt;- subset(dta, dta[,'性別'] == '女')
-dta_m &lt;- subset(dta, dta[,'性別'] != '女')</code></pre>
+<pre class="r"><code>load(&quot;data/CH04.Rdata&quot;)</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>製作表格內容。</li>
 </ol>
@@ -96,13 +91,10 @@ round(summary(lm(憂鬱~被霸凌+年齡,data=dta_m))$coef[2,],digits=3),
 round(summary(lm(憂鬱~指數+被霸凌+年齡,data=dta_m))$coef[2,],digits=3)
 )</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>輸出表格。</li>
+<li>輸出表格。比較原書表4.1</li>
 </ol>
-<pre class="r"><code>library(xtable)
-rownames(T41f) &lt;- c(&quot;青少年女性&quot;,&quot;1.體質指數-&gt;憂鬱&quot;, &quot;2.體質指數-&gt;被霸凌&quot;, &quot;3.被霸凌經驗-&gt;憂鬱&quot;, &quot;4.體質指數-&gt;憂鬱&quot;)
+<pre class="r"><code>rownames(T41f) &lt;- c(&quot;青少年女性&quot;,&quot;1.體質指數-&gt;憂鬱&quot;, &quot;2.體質指數-&gt;被霸凌&quot;, &quot;3.被霸凌經驗-&gt;憂鬱&quot;, &quot;4.體質指數-&gt;憂鬱&quot;)
 rownames(T41m) &lt;- c(&quot;青少年男性&quot;,&quot;1.體質指數-&gt;憂鬱 &quot;, &quot;2.體質指數-&gt;被霸凌 &quot;, &quot;3.被霸凌經驗-&gt;憂鬱 &quot;, &quot;4.體質指數-&gt;憂鬱 &quot;)
-#rownames(T41f) &lt;- c(&quot;Teenage Girls&quot;,&quot;1.Indeces-&gt;Depress&quot;, &quot;2.Indeces-&gt;Bully&quot;, &quot;3.Bully-&gt;Depress&quot;, &quot;4.Indeces-&gt;Depress&quot;)
-#rownames(T41m) &lt;- c(&quot;Teenage Boys&quot;,&quot;1.Indeces-&gt;Depress &quot;, &quot;2.Indeces-&gt;Bully &quot;, &quot;3.Bully-&gt;Depress &quot;, &quot;4.Indeces-&gt;Depress &quot;)
 knitr::kable(rbind(T41f,T41m), type = &quot;html&quot;, floating = FALSE)</code></pre>
 <table>
 <thead>
