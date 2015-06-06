@@ -4,9 +4,10 @@ author: "Sau-Chin Chen"
 output: html_document
 ---
 
-#### Questions to be solved:
-**1.無法直接讀UTF-8原始資料**  
+### Questions to be noted:
+**1.無法直接讀取UTF-8原始資料**  
 **2.必須從image file讀取資料**  
+**[Rmarkdown原始碼](https://github.com/SCgeeker/CH_R_Meta/blob/gh-pages/04/ch04.Rmd)**  
 
 1. 讀取資料。
 ```{r readdata, message=FALSE, warning=FALSE, results='hide', cache=TRUE}
